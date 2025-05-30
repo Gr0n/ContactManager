@@ -19,6 +19,7 @@ add_library(DatabaseSolution SHARED
   ContactClass.h
   privatecontactclass.h privatecontactclass.cpp
   personalcontactclass.h personalcontactclass.cpp
+  databaseclass.h databaseclass.cpp
 )
 
 target_link_libraries(DatabaseSolution PRIVATE Qt${QT_VERSION_MAJOR}::Core)
