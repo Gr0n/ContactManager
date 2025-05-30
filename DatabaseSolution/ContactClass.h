@@ -1,10 +1,14 @@
+#ifndef CONTACTCLASS_H
+#define CONTACTCLASS_H
+
 #include <string>
 
 using namespace std;
 
+/// @brief Class representing a contact in the contact manager.
+/// This class contains attributes for first name, last name, phone number, and email.
 class Contact {
-    /// @brief Class representing a contact in the contact manager.
-    /// This class contains attributes for first name, last name, phone number, and email.
+
 private:
     /// @brief Private member variables to store contact information.
     string first_name;
@@ -57,3 +61,5 @@ public:
     /// @return The email of the contact as a string.
     string getEmail() const;
 };
+
+#endif // CONTACTCLASS_H
