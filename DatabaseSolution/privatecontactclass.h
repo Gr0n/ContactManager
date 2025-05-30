@@ -6,7 +6,7 @@
 
 /// @brief Class representing a private contact in the contact manager.
 /// This class inherits from the Contact class and adds a company name attribute.
-class PrivateContactClass : public Contact
+class PrivateContact : public Contact
 {
 private:
     /// @brief Private member variables to store additional contact information.
@@ -14,7 +14,7 @@ private:
 
 public:
     /// @brief Default constructor initializes private contact with empty strings.
-    PrivateContactClass();
+    PrivateContact();
 
     
     /// @brief Parameterized constructor initializes private contact with provided values.
@@ -23,7 +23,7 @@ public:
     /// @param phone_number The phone number of the contact.
     /// @param email The email address of the contact.
     /// @param company_name The company name associated with the contact.
-    PrivateContactClass(string first_name, string last_name, string phone_number, string email, string company_name);
+    PrivateContact(string first_name, string last_name, string phone_number, string email, string company_name);
 
     /// @brief Sets the company name of the private contact.
     /// @param company_name The company name to set for the private contact.
