@@ -8,11 +8,10 @@ using namespace std;
 
 /// @brief Class representing a contact in the contact manager.
 /// This class contains attributes for first name, last name, phone number, and email.
-<<<<<<< Updated upstream
-class Contact {
-=======
+
+
 class DATABASESOLUTION_EXPORT Contact {
->>>>>>> Stashed changes
+
 
 private:
     /// @brief Private member variables to store contact information.
@@ -71,8 +70,6 @@ public:
     virtual int getType() const;
 };
 
-<<<<<<< Updated upstream
+
 #endif // CONTACTCLASS_H
-=======
-#endif // CONTACTCLASS_H
->>>>>>> Stashed changes
+
