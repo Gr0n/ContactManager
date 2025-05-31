@@ -3,10 +3,10 @@
 
 #include "ContactClass.h"
 #include <string>
-
+#include "DatabaseSolution_global.h"
 /// @brief Class representing a private contact in the contact manager.
 /// This class inherits from the Contact class and adds a company name attribute.
-class PrivateContact : public Contact
+class DATABASESOLUTION_EXPORT PrivateContact : public Contact
 {
 private:
     /// @brief Private member variables to store additional contact information.
@@ -16,7 +16,7 @@ public:
     /// @brief Default constructor initializes private contact with empty strings.
     PrivateContact();
 
-    
+
     /// @brief Parameterized constructor initializes private contact with provided values.
     /// @param first_name The first name of the contact.
     /// @param last_name The last name of the contact.
@@ -33,7 +33,7 @@ public:
     /// @return The company name of the private contact as a string.
     string getCompanyName() const;
 
-    
+
 };
 
 #endif // PRIVATECONTACTCLASS_H

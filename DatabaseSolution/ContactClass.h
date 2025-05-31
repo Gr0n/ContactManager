@@ -12,7 +12,6 @@ using namespace std;
 
 class DATABASESOLUTION_EXPORT Contact {
 
-
 private:
     /// @brief Private member variables to store contact information.
     string first_name;
