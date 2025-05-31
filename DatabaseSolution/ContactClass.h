@@ -1,10 +1,17 @@
+#ifndef CONTACTCLASS_H
+#define CONTACTCLASS_H
+
 #include <string>
+#include "DatabaseSolution_global.h"
 
 using namespace std;
 
-class Contact {
-    /// @brief Class representing a contact in the contact manager.
-    /// This class contains attributes for first name, last name, phone number, and email.
+/// @brief Class representing a contact in the contact manager.
+/// This class contains attributes for first name, last name, phone number, and email.
+
+
+class DATABASESOLUTION_EXPORT Contact {
+
 private:
     /// @brief Private member variables to store contact information.
     string first_name;
@@ -12,48 +19,56 @@ private:
     string phone_number;
     string email;
 public:
-
+    int type; ///< Type of contact (0 for personal, 1 for private)
     Contact();
-
+    virtual ~Contact();
     /// @brief Default constructor initializes contact with empty strings.
     /// @brief Parameterized constructor initializes contact with provided values.
     /// @param first_name The first name of the contact.
     /// @param last_name The last name of the contact.
     /// @param phone_number The phone number of the contact.
     /// @param email The email address of the contact.
-    Contact(string first_name, string last_name, string phone_number, string email);
-    
+    Contact(string first_name, string last_name, string phone_number, string email, int type);
+
 
     /// @brief Sets the first name of the contact.
     /// @param first_name The first name to set for the contact. <String>
-    void setFirstName(string first_name);
+    virtual void setFirstName(string first_name);
 
     /// @brief Sets the last name of the contact.
     /// @param last_name The last name to set for the contact. <String>
-    void setLastName(string last_name);
+    virtual void setLastName(string last_name);
 
     /// @brief Sets the phone number of the contact.
     /// @param phone_number The phone number to set for the contact. <String>
-    void setPhoneNumber(string phone_number);
+    virtual void setPhoneNumber(string phone_number);
 
     /// @brief Sets the email of the contact.
     /// @param email The email name to set for the contact. <String>
-    void setEmail(string email);
-    
+    virtual void setEmail(string email);
+
 
     /// @brief Gets the first name of the contact.
     /// @return The first name of the contact as a string.
-    string getFirstName() const;
-    
+    virtual string getFirstName() const;
+
     /// @brief Gets the last name of the contact.
     /// @return The last name of the contact as a string.
-    string getLastName() const;
+    virtual string getLastName() const;
 
     /// @brief Gets the phone number of the contact.
     /// @return The phone number of the contact as a string.
-    string getPhoneNumber() const;
+    virtual string getPhoneNumber() const;
 
     /// @brief Gets the email of the contact.
     /// @return The email of the contact as a string.
-    string getEmail() const;
+    virtual string getEmail() const;
+
+    /// @brief returns the type of contact.
+    /// @return The type of contact as an integer (0 for personal, 1 for private(business)).
+    virtual int getType() const;
 };
+
+
+#endif // CONTACTCLASS_H
+

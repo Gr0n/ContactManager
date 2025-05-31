@@ -1,24 +1,26 @@
-#include <iostream>
 #include "ContactClass.h"
 
 using namespace std;
 
 Contact::Contact()
-    : first_name(""), last_name(""), phone_number(""), email("") {}
+    : first_name(""), last_name(""), phone_number(""), email(""), type(-1) {}
 
-Contact::Contact(string first_name, string last_name, string phone_number, string email)
-    /// @brief Default constructor initializes contact with empty strings.
-    /// @brief Parameterized constructor initializes contact with provided values.
-    /// @param first_name The first name of the contact.
-    /// @param last_name The last name of the contact.
-    /// @param phone_number The phone number of the contact.
-    /// @param email The email address of the contact.
-    {
-        this->first_name = first_name;
-        this->last_name = last_name;
-        this->phone_number = phone_number;
-        this->email = email;
-    }
+Contact::~Contact(){}
+
+Contact::Contact(string first_name, string last_name, string phone_number, string email, int type)
+/// @brief Default constructor initializes contact with empty strings.
+/// @brief Parameterized constructor initializes contact with provided values.
+/// @param first_name The first name of the contact.
+/// @param last_name The last name of the contact.
+/// @param phone_number The phone number of the contact.
+/// @param email The email address of the contact.
+{
+    this->first_name = first_name;
+    this->last_name = last_name;
+    this->phone_number = phone_number;
+    this->email = email;
+    this->type = type;
+}
 
 void Contact::setFirstName(string first_name)
 /// @brief Sets the first name of the contact.
@@ -75,3 +77,9 @@ string Contact::getEmail() const
 {
     return email;
 }
+
+int Contact::getType() const
+{
+    return type;
+}
+
