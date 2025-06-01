@@ -50,5 +50,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    int currentEditingContactIndex = -1;
+    QString currentEditingContactType = ""; // "personal" lub "business"
 };
 #endif // MAINWINDOW_H

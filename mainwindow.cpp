@@ -36,7 +36,7 @@ void MainWindow::on_biznesowy_Radio_released()
 void MainWindow::on_utworzBuiss_B2N_clicked()
 {
     Database db;
-
+    db.load_from_file("contacts.txt");
     string first_name=ui->imieBuiss_Input->text().toStdString();
     string last_name=ui->nazwiskoBuiss_Input->text().toStdString();
     string company=ui->companyInput->text().toStdString();
@@ -52,11 +52,13 @@ void MainWindow::on_utworzBuiss_B2N_clicked()
     ui->nrTelBuiss_Input->clear();
     ui->emailBuiss_Input->clear();
     QMessageBox::information(this, "Sukces", "Dodano biznesowy kontakt.");
+    db.save_to_file();
+
 }
 void MainWindow::on_utworzPers_B2n_clicked()
 {
     Database db;
-
+    db.load_from_file("contacts.txt");
     QString first_name=ui->imiePers_Input->text();
     QString last_name=ui->nazwiskoPers_Input->text();
     QString nickname=ui->nickPers_Input->text();
@@ -112,9 +114,8 @@ void MainWindow::on_buttonimg_clicked()
 
 void MainWindow::on_zobaczContacty_B2N_clicked()
 {
-    Database db;
-
-    ui->stackedWidget->setCurrentIndex(2);}
+    ui->stackedWidget->setCurrentIndex(2);
+}
   /*  ui->wyswietlPers_listWidget->clear();
     db.load_from_file("contacts.txt");
     for(int i=0; i<db.personal_contacts.size(); i++){
@@ -148,15 +149,33 @@ void MainWindow::on_powrotLista_B2N_clicked()
 
 void MainWindow::on_buttonimg_2_clicked()
 {
-    QString first_name=ui->imieInput_5->text();
+    Database db;
+    db.load_from_file("contacts.txt");
 
+    QString first_name=ui->imieInput_5->text();
+    db.personal_contacts[currentEditingContactIndex].setFirstName(first_name.toStdString());
+
+    QString last_name=ui->nazwiskoInput_4->text();
+    db.personal_contacts[currentEditingContactIndex].setLastName(last_name.toStdString());
+
+    QString nickname=ui->nickInput_3->text();
+    db.personal_contacts[currentEditingContactIndex].setNickname(nickname.toStdString());
+
+    QString nrTel=ui->nrTelInput_4->text();
+    db.personal_contacts[currentEditingContactIndex].setPhoneNumber(nrTel.toStdString());
+
+    QString email=ui->emailInput_4->text();
+    db.personal_contacts[currentEditingContactIndex].setEmail(email.toStdString());
+
+    QString uroziny=ui->urodzinyInput->text();
+    db.personal_contacts[currentEditingContactIndex].setBirthday(uroziny.toStdString());
+    db.save_to_file();
 }
 /////////////////////////////////////////////////////
 
 void MainWindow::on_nowyContact_B2N_clicked()
 {
     ui->stackedWidget->setCurrentIndex(1);
-
 }
 
 
@@ -196,9 +215,8 @@ void MainWindow::on_powrotMain_B2N_clicked()
 void MainWindow::on_buisContatsWyswietl_Radio_released()
 {
     Database db;
-
-    ui->lista_Widget->setCurrentIndex(1);
     db.load_from_file("contacts.txt");
+    ui->lista_Widget->setCurrentIndex(1);
 
     // Ustaw nagłówki kolumn
     ui->wyswietlBuiss_tableWidget->setColumnCount(4);
@@ -230,6 +248,8 @@ void MainWindow::on_buisContatsWyswietl_Radio_released()
     // Dostosuj szerokość kolumn
     ui->wyswietlBuiss_tableWidget->resizeColumnsToContents();
     ui->wyswietlBuiss_tableWidget->horizontalHeader()->setStretchLastSection(false);
+    db.save_to_file();
+
 }
 
 
@@ -241,7 +261,6 @@ void MainWindow::on_persContatsWyswietl_Radio_released()
         ui->wyswietlPers_tableWidget->clear();
         ui->lista_Widget->setCurrentIndex(0);
 
-        db.load_from_file("contacts.txt");
 
         // Ustaw nagłówki kolumn
         ui->wyswietlPers_tableWidget->setColumnCount(4);
@@ -273,6 +292,8 @@ void MainWindow::on_persContatsWyswietl_Radio_released()
         // Dostosuj szerokość kolumn
         ui->wyswietlPers_tableWidget->resizeColumnsToContents();
         ui->wyswietlPers_tableWidget->horizontalHeader()->setStretchLastSection(false);
+        db.save_to_file();
+
 }
 
 
@@ -303,7 +324,30 @@ void MainWindow::on_persContatsWyswietl_Radio_released()
 */
 void MainWindow::editContact(int index)
 {
-    QMessageBox::information(this, "Edycja",
-                             QString("Edytowanie kontaktu o indeksie: %1").arg(index));
-    // Implementuj logikę edycji
+    Database db;
+    db.load_from_file("contacts.txt");
+
+    ui->stackedWidget->setCurrentIndex(3);
+
+
+    PersonalContact& contact = db.personal_contacts[index];
+
+    ui->imieInput_5->setText(QString::fromStdString(contact.getFirstName()));
+    ui->nazwiskoInput_4->setText(QString::fromStdString(contact.getLastName()));
+    ui->nickInput_3->setText(QString::fromStdString(contact.getNickname()));
+    ui->nrTelInput_4->setText(QString::fromStdString(contact.getPhoneNumber()));
+    ui->emailInput_4->setText(QString::fromStdString(contact.getEmail()));
+    ui->urodzinyInput->setText(QString::fromStdString(contact.getBirthday()));
+
+
+    connect(ui->buttonimg_2, &QPushButton::clicked, [this, index](){
+        int currentEditingContactIndex = index;
+        QString currentEditingContactType = "personal"; // "personal" lub "business"
+        this->on_buttonimg_2_clicked();
+    });
+    db.save_to_file();
+   // ui->wyswietlBuiss_tableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(last)));
+   // ui->wyswietlBuiss_tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(name)));
+   // ui->wyswietlBuiss_tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(phone)));
+
 }
