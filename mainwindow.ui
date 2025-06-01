@@ -13,9 +13,6 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-<<<<<<< Updated upstream
-  <widget class="QWidget" name="centralwidget"/>
-=======
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_6">
     <item>
@@ -1518,7 +1515,6 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
     </item>
    </layout>
   </widget>
->>>>>>> Stashed changes
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
