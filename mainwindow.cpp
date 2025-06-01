@@ -16,11 +16,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
-
-
-
 void MainWindow::on_personalny_Radio_released()
 {
     ui->starterWidget->setCurrentIndex(1);
@@ -32,7 +27,18 @@ void MainWindow::on_biznesowy_Radio_released()
     ui->starterWidget->setCurrentIndex(2);
 }
 
-
+void MainWindow::refreshCurrentView()
+{
+    // Determine which view is currently active and refresh it
+    int currentListIndex = ui->lista_Widget->currentIndex();
+    if (currentListIndex == 0) {
+        // Personal contacts view is active
+        on_persContatsWyswietl_Radio_released();
+    } else if (currentListIndex == 1) {
+        // Business contacts view is active
+        on_buisContatsWyswietl_Radio_released();
+    }
+}
 void MainWindow::on_utworzBuiss_B2N_clicked()
 {
     Database db;
@@ -84,18 +90,8 @@ void MainWindow::on_utworzPers_B2n_clicked()
 }
 void MainWindow::on_utworzContact_B2N_clicked()
 {
-    Database db;/*
-    string first_name=ui->imieContact_Input->text().toStdString();
-    string last_name=ui->nazwiskoContact_Input->text().toStdString();
-    string nrTel=ui->nrTelContact_Input->text().toStdString();
-    string email=ui->emailContact_Input->text().toStdString();
-    Contact contact(first_name, last_name, nrTel, email);
-    db.addContact(&contact);
+    Database db;
 
-    ui->imieContact_Input->clear();
-    ui->nazwiskoContact_Input->clear();
-    ui->nrTelContact_Input->clear();
-    ui->emailContact_Input->clear();*/
     QMessageBox::information(this, "Sukces", "Dodano kontakt.");
 }
 
@@ -109,6 +105,8 @@ void MainWindow::on_powrot_B2N_clicked()
 void MainWindow::on_buttonimg_clicked()
 {
     ui->stackedWidget->setCurrentIndex(3);
+    refreshCurrentView();
+
 
 }
 
@@ -141,36 +139,12 @@ void MainWindow::on_zobaczContacty_B2N_clicked()
 void MainWindow::on_powrotLista_B2N_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
-
+    refreshCurrentView();
 }
 
 
 
 
-void MainWindow::on_buttonimg_2_clicked()
-{
-    Database db;
-    db.load_from_file("contacts.txt");
-
-    QString first_name=ui->imieInput_5->text();
-    db.personal_contacts[currentEditingContactIndex].setFirstName(first_name.toStdString());
-
-    QString last_name=ui->nazwiskoInput_4->text();
-    db.personal_contacts[currentEditingContactIndex].setLastName(last_name.toStdString());
-
-    QString nickname=ui->nickInput_3->text();
-    db.personal_contacts[currentEditingContactIndex].setNickname(nickname.toStdString());
-
-    QString nrTel=ui->nrTelInput_4->text();
-    db.personal_contacts[currentEditingContactIndex].setPhoneNumber(nrTel.toStdString());
-
-    QString email=ui->emailInput_4->text();
-    db.personal_contacts[currentEditingContactIndex].setEmail(email.toStdString());
-
-    QString uroziny=ui->urodzinyInput->text();
-    db.personal_contacts[currentEditingContactIndex].setBirthday(uroziny.toStdString());
-    db.save_to_file();
-}
 /////////////////////////////////////////////////////
 
 void MainWindow::on_nowyContact_B2N_clicked()
@@ -183,6 +157,7 @@ void MainWindow::on_nowyContact_B2N_clicked()
 void MainWindow::on_powrotMain_B2N_clicked()
 {
     ui->stackedWidget->setCurrentIndex(0);
+
 }
 
 
@@ -216,6 +191,7 @@ void MainWindow::on_buisContatsWyswietl_Radio_released()
 {
     Database db;
     db.load_from_file("contacts.txt");
+
     ui->lista_Widget->setCurrentIndex(1);
 
     // Ustaw nagłówki kolumn
@@ -238,11 +214,11 @@ void MainWindow::on_buisContatsWyswietl_Radio_released()
         ui->wyswietlBuiss_tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(phone)));
 
         // Dodaj przycisk edycji
-        QPushButton* editBtn = new QPushButton("Edytuj");
-        connect(editBtn, &QPushButton::clicked, [this, i](){
-            this->editContact(i);
+        QPushButton* editBtn2 = new QPushButton("Edytuj");
+        connect(editBtn2, &QPushButton::clicked, [this, i](){
+            this->editContactBuiss(i);
         });
-        ui->wyswietlBuiss_tableWidget->setCellWidget(i, 3, editBtn);
+        ui->wyswietlBuiss_tableWidget->setCellWidget(i, 3, editBtn2);
     }
 
     // Dostosuj szerokość kolumn
@@ -322,6 +298,85 @@ void MainWindow::on_persContatsWyswietl_Radio_released()
 }
 
 */
+void MainWindow::on_buttonimg_3_clicked()
+{
+    Database db;
+    db.load_from_file("contacts.txt");
+
+    QString first_name=ui->imieInput_7->text();
+    db.private_contacts[currentEditingContactIndex].setFirstName(first_name.toStdString());
+
+    QString last_name=ui->nazwiskoInput_6->text();
+    db.private_contacts[currentEditingContactIndex].setLastName(last_name.toStdString());
+
+    QString company=ui->company_Input->text();
+    db.private_contacts[currentEditingContactIndex].setCompanyName(company.toStdString());
+
+    QString nrTel=ui->nrTelInput_6->text();
+    db.private_contacts[currentEditingContactIndex].setPhoneNumber(nrTel.toStdString());
+
+    QString email=ui->emailInput_6->text();
+    db.private_contacts[currentEditingContactIndex].setEmail(email.toStdString());
+
+    db.save_to_file();
+   // ui->stackedWidget->setCurrentIndex(2);
+   // ui->lista_Widget->setCurrentIndex(1);
+    //on_buisContatsWyswietl_Radio_released();
+}
+void MainWindow::on_buttonimg_2_clicked()
+{
+    Database db;
+    db.load_from_file("contacts.txt");
+
+    QString first_name=ui->imieInput_5->text();
+    db.personal_contacts[currentEditingContactIndex].setFirstName(first_name.toStdString());
+
+    QString last_name=ui->nazwiskoInput_4->text();
+    db.personal_contacts[currentEditingContactIndex].setLastName(last_name.toStdString());
+
+    QString nickname=ui->nickInput_3->text();
+    db.personal_contacts[currentEditingContactIndex].setNickname(nickname.toStdString());
+
+    QString nrTel=ui->nrTelInput_4->text();
+    db.personal_contacts[currentEditingContactIndex].setPhoneNumber(nrTel.toStdString());
+
+    QString email=ui->emailInput_4->text();
+    db.personal_contacts[currentEditingContactIndex].setEmail(email.toStdString());
+
+    QString uroziny=ui->urodzinyInput->text();
+    db.personal_contacts[currentEditingContactIndex].setBirthday(uroziny.toStdString());
+
+    db.save_to_file();
+    ui->stackedWidget->setCurrentIndex(2);
+    refreshCurrentView();
+
+}
+void MainWindow::editContactBuiss(int i){
+    Database db;
+    db.load_from_file("contacts.txt");
+
+    ui->stackedWidget->setCurrentIndex(4);
+
+    currentEditingContactIndex = i;
+
+    PrivateContact& contact = db.private_contacts[i];
+
+    ui->imieInput_7->setText(QString::fromStdString(contact.getFirstName()));
+    ui->nazwiskoInput_6->setText(QString::fromStdString(contact.getLastName()));
+    ui->companyInput->setText(QString::fromStdString(contact.getCompanyName()));
+    ui->nrTelInput_6->setText(QString::fromStdString(contact.getPhoneNumber()));
+    ui->emailInput_6->setText(QString::fromStdString(contact.getEmail()));
+
+
+    connect(ui->buttonimg_3, &QPushButton::clicked, [this, i](){
+        QString currentEditingContactType = "business"; // "personal" lub "business"
+        this->on_buttonimg_3_clicked();
+    });
+    db.save_to_file();
+
+
+
+}
 void MainWindow::editContact(int index)
 {
     Database db;
@@ -329,6 +384,7 @@ void MainWindow::editContact(int index)
 
     ui->stackedWidget->setCurrentIndex(3);
 
+    currentEditingContactIndex = index;
 
     PersonalContact& contact = db.personal_contacts[index];
 
@@ -341,13 +397,21 @@ void MainWindow::editContact(int index)
 
 
     connect(ui->buttonimg_2, &QPushButton::clicked, [this, index](){
-        int currentEditingContactIndex = index;
         QString currentEditingContactType = "personal"; // "personal" lub "business"
         this->on_buttonimg_2_clicked();
     });
     db.save_to_file();
-   // ui->wyswietlBuiss_tableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(last)));
-   // ui->wyswietlBuiss_tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(name)));
-   // ui->wyswietlBuiss_tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(phone)));
 
 }
+
+void MainWindow::on_powrotLista_B2N_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(2);
+    on_persContatsWyswietl_Radio_released();
+    on_buisContatsWyswietl_Radio_released();
+}
+
+
+
+
+

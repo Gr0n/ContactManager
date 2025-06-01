@@ -48,6 +48,15 @@ private slots:
 
     void editContact(int index);
 
+    void editContactBuiss(int i);
+
+    void on_powrotLista_B2N_2_clicked();
+
+    void on_buttonimg_3_clicked();
+
+    void refreshCurrentView();
+
+
 private:
     Ui::MainWindow *ui;
     int currentEditingContactIndex = -1;

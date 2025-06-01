@@ -36,7 +36,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="main_Screen">
        <widget class="QLabel" name="label">
@@ -1344,6 +1344,295 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
           <width>12</width>
           <height>12</height>
          </size>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="edytujBuiss_Screen">
+       <widget class="QPushButton" name="buttonimg_3">
+        <property name="geometry">
+         <rect>
+          <x>380</x>
+          <y>390</y>
+          <width>50</width>
+          <height>36</height>
+         </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	background-color:rgb(218, 218, 218);
+	                             margin: 2px; 
+								color:rgb(6, 6, 6);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                       </string>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset theme="mail-message-new"/>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>12</width>
+          <height>12</height>
+         </size>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="powrotLista_B2N_2">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>50</y>
+          <width>101</width>
+          <height>41</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>e-Ukraine</family>
+          <pointsize>9</pointsize>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	background-color:rgb(205, 208, 255);
+	                             margin: 2px; 
+								color:rgb(6, 6, 6);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                         QPushButton:hover{
+ 	background-color:rgb(139, 139, 208);
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(111, 111, 167); 
+						color:rgb(255, 255, 255);                         }</string>
+        </property>
+        <property name="text">
+         <string>Powrót</string>
+        </property>
+       </widget>
+       <widget class="QWidget" name="layoutWidget_3">
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>120</y>
+          <width>361</width>
+          <height>250</height>
+         </rect>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_12">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <widget class="QLineEdit" name="imieInput_7">
+             <property name="font">
+              <font>
+               <family>e-Ukraine</family>
+               <pointsize>8</pointsize>
+               <fontweight>ExtraLight</fontweight>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	background-color:rgb(180, 180, 180);
+	                             margin: 2px; 
+								color:rgb(255, 255, 255);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                         QLineEdit:textEdited { 
+
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(234, 234, 234); 
+						color:rgb(61, 61, 61);                         }</string>
+             </property>
+             <property name="text">
+              <string>Imię</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Orientation::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLineEdit" name="company_Input">
+             <property name="font">
+              <font>
+               <family>e-Ukraine</family>
+               <pointsize>8</pointsize>
+               <fontweight>ExtraLight</fontweight>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	background-color:rgb(180, 180, 180);
+	                             margin: 2px; 
+								color:rgb(255, 255, 255);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                         QLineEdit:textEdited { 
+
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(234, 234, 234); 
+						color:rgb(61, 61, 61);                         }</string>
+             </property>
+             <property name="text">
+              <string>Company</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <widget class="QLineEdit" name="nazwiskoInput_6">
+             <property name="font">
+              <font>
+               <family>e-Ukraine</family>
+               <pointsize>8</pointsize>
+               <fontweight>ExtraLight</fontweight>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	background-color:rgb(180, 180, 180);
+	                             margin: 2px; 
+								color:rgb(255, 255, 255);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                         QLineEdit:textEdited { 
+
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(234, 234, 234); 
+						color:rgb(61, 61, 61);                         }</string>
+             </property>
+             <property name="text">
+              <string>Nazwisko</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_17">
+           <item>
+            <widget class="QLineEdit" name="nrTelInput_6">
+             <property name="font">
+              <font>
+               <family>e-Ukraine</family>
+               <pointsize>8</pointsize>
+               <fontweight>ExtraLight</fontweight>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	background-color:rgb(180, 180, 180);
+	                             margin: 2px; 
+								color:rgb(255, 255, 255);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                         QLineEdit:textEdited { 
+
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(234, 234, 234); 
+						color:rgb(61, 61, 61);                         }</string>
+             </property>
+             <property name="text">
+              <string>nrTelefonu</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_18">
+           <item>
+            <widget class="QLineEdit" name="emailInput_6">
+             <property name="font">
+              <font>
+               <family>e-Ukraine</family>
+               <pointsize>8</pointsize>
+               <fontweight>ExtraLight</fontweight>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QLineEdit{
+	background-color:rgb(180, 180, 180);
+	                             margin: 2px; 
+								color:rgb(255, 255, 255);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                         QLineEdit:textEdited { 
+
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(234, 234, 234); 
+						color:rgb(61, 61, 61);                         }</string>
+             </property>
+             <property name="text">
+              <string>E-mail</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QLabel" name="label_4">
+        <property name="geometry">
+         <rect>
+          <x>360</x>
+          <y>60</y>
+          <width>63</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>e-Ukraine</family>
+          <pointsize>11</pointsize>
+         </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">QPushButton{
+	background-color:rgb(205, 208, 255);
+	                             margin: 2px; 
+								color:rgb(6, 6, 6);
+                               padding: 10px 15px; 
+                         border-radius: 5px; 
+;}
+                         QPushButton:hover{
+ 	background-color:rgb(139, 139, 208);
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(111, 111, 167); 
+						color:rgb(255, 255, 255);                         }</string>
+        </property>
+        <property name="text">
+         <string>Edytuj</string>
         </property>
        </widget>
       </widget>
