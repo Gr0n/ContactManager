@@ -36,7 +36,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>4</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="main_Screen">
        <widget class="QLabel" name="label">
@@ -919,8 +919,8 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
         </property>
         <property name="iconSize">
          <size>
-          <width>35</width>
-          <height>35</height>
+          <width>20</width>
+          <height>20</height>
          </size>
         </property>
         <property name="checkable">
@@ -988,6 +988,9 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
            </property>
            <property name="text">
             <string>Personalne</string>
+           </property>
+           <property name="checked">
+            <bool>true</bool>
            </property>
           </widget>
          </item>

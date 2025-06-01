@@ -2,6 +2,7 @@
 #include "./ui_mainwindow.h"
 #include "DatabaseSolution/DatabaseClass.h"
 #include <QMessageBox>
+#include <QIcon>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -113,6 +114,8 @@ void MainWindow::on_buttonimg_clicked()
 void MainWindow::on_zobaczContacty_B2N_clicked()
 {
     ui->stackedWidget->setCurrentIndex(2);
+    ui->lista_Widget->setCurrentIndex(0);
+    refreshCurrentView();
 }
   /*  ui->wyswietlPers_listWidget->clear();
     db.load_from_file("contacts.txt");
@@ -187,39 +190,92 @@ void MainWindow::on_powrotMain_B2N_clicked()
 
 
 
-void MainWindow::on_buisContatsWyswietl_Radio_released()
-{
-    Database db;
-    db.load_from_file("contacts.txt");
+    void MainWindow::on_buisContatsWyswietl_Radio_released()
+    {
+        Database db;
+        db.load_from_file("contacts.txt");
 
-    ui->lista_Widget->setCurrentIndex(1);
+        ui->lista_Widget->setCurrentIndex(1);
 
-    // Ustaw nagłówki kolumn
-    ui->wyswietlBuiss_tableWidget->setColumnCount(4);
-    QStringList headers;
-    headers << "Nazwisko" << "Imię" << "Telefon" << "Akcje";
-    ui->wyswietlBuiss_tableWidget->setHorizontalHeaderLabels(headers);
+        // Ustaw nagłówki kolumn
+        ui->wyswietlBuiss_tableWidget->setColumnCount(4);
+        QStringList headers;
+        headers << "Nazwisko" << "Imię" << "Telefon" << "Akcje";
+        ui->wyswietlBuiss_tableWidget->setHorizontalHeaderLabels(headers);
 
-    // Ustaw liczbę wierszy
-    ui->wyswietlBuiss_tableWidget->setRowCount(db.private_contacts.size());
+        // Ustaw liczbę wierszy
+        ui->wyswietlBuiss_tableWidget->setRowCount(db.private_contacts.size());
 
-    for(int i = 0; i < db.private_contacts.size(); i++){
-        string name = db.private_contacts[i].getFirstName();
-        string last = db.private_contacts[i].getLastName();
-        string phone = db.private_contacts[i].getPhoneNumber();
+        for(int i = 0; i < db.private_contacts.size(); i++){
+            string name = db.private_contacts[i].getFirstName();
+            string last = db.private_contacts[i].getLastName();
+            string phone = db.private_contacts[i].getPhoneNumber();
 
-        // Dodaj dane do komórek
-        ui->wyswietlBuiss_tableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(last)));
-        ui->wyswietlBuiss_tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(name)));
-        ui->wyswietlBuiss_tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(phone)));
+            // Dodaj dane do komórek
+            ui->wyswietlBuiss_tableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(last)));
+            ui->wyswietlBuiss_tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(name)));
+            ui->wyswietlBuiss_tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(phone)));
 
-        // Dodaj przycisk edycji
-        QPushButton* editBtn2 = new QPushButton("Edytuj");
-        connect(editBtn2, &QPushButton::clicked, [this, i](){
-            this->editContactBuiss(i);
-        });
-        ui->wyswietlBuiss_tableWidget->setCellWidget(i, 3, editBtn2);
-    }
+            QWidget* buttonWidget = new QWidget();
+            QHBoxLayout* buttonLayout = new QHBoxLayout(buttonWidget);
+            buttonLayout->setContentsMargins(5, 2, 5, 2);
+            buttonLayout->setSpacing(5);
+
+            QPushButton* editBtn2 = new QPushButton("Edytuj");
+            editBtn2->setStyleSheet("QPushButton {\n"
+                                    "    background-color: rgb(142, 138, 255);\n"
+                                    "    color: rgb(6, 6, 6);\n"
+                                    "    font-family: 'e-Ukraine';\n"
+                                    "    padding: 5px 10px;\n"
+                                    "    border-radius: 5px;\n"
+                                    "    border: none;\n"
+                                    "}\n"
+                                    "QPushButton:hover {\n"
+                                    "    background-color: rgb(96, 93, 227);\n"
+                                    "}\n"
+                                    "QPushButton:pressed {\n"
+                                    "    background-color: rgb(64, 62, 162);\n"
+                                    "    color: rgb(255, 255, 255);\n"
+                                    "}");
+            editBtn2->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::MailMessageNew));
+            connect(editBtn2, &QPushButton::clicked, [this, i](){
+                this->editContactBuiss(i);
+            });
+
+            // Dodaj przycisk usuwania
+            QPushButton* usunBtn2 = new QPushButton("Usuń");
+            usunBtn2->setStyleSheet("QPushButton {\n"
+                                    "    background-color: rgb(245, 123, 93);\n"
+                                    "    color: rgb(6, 6, 6);\n"
+                                    "    font-family: 'e-Ukraine';\n"
+                                    "    padding: 5px 10px;\n"
+                                    "    border-radius: 5px;\n"
+                                    "    border: none;\n"
+                                    "}\n"
+                                    "QPushButton:hover {\n"
+                                    "    background-color: rgb(254, 167, 145);\n"
+                                    "}\n"
+                                    "QPushButton:pressed {\n"
+                                    "    background-color: rgb(204, 95, 68);\n"
+                                    "    color: rgb(255, 255, 255);\n"
+                                    "}");
+            usunBtn2->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::EditDelete));
+            // POPRAWKA: Połącz przycisk usuń z odpowiednią funkcją
+            connect(usunBtn2, &QPushButton::clicked, [this, i](){
+                Database db;
+                db.load_from_file("contacts.txt");
+                db.removeContact(1, i);
+                db.save_to_file(); // Zapisz zmiany
+                // Odśwież widok tabeli
+refreshCurrentView();
+            });
+
+            // Dodaj przyciski do layoutu
+            buttonLayout->addWidget(editBtn2);
+            buttonLayout->addWidget(usunBtn2);
+
+            // Ustaw widget w komórce tabeli
+            ui->wyswietlBuiss_tableWidget->setCellWidget(i, 3, buttonWidget);}
 
     // Dostosuj szerokość kolumn
     ui->wyswietlBuiss_tableWidget->resizeColumnsToContents();
@@ -252,18 +308,71 @@ void MainWindow::on_persContatsWyswietl_Radio_released()
             string last = db.personal_contacts[i].getLastName();
             string phone = db.personal_contacts[i].getPhoneNumber();
 
-            // Dodaj dane do komórek
             ui->wyswietlPers_tableWidget->setItem(i, 0, new QTableWidgetItem(QString::fromStdString(last)));
             ui->wyswietlPers_tableWidget->setItem(i, 1, new QTableWidgetItem(QString::fromStdString(name)));
             ui->wyswietlPers_tableWidget->setItem(i, 2, new QTableWidgetItem(QString::fromStdString(phone)));
 
-            // Dodaj przycisk edycji
+            QWidget* buttonWidget = new QWidget();
+            QHBoxLayout* buttonLayout = new QHBoxLayout(buttonWidget);
+            buttonLayout->setContentsMargins(5, 2, 5, 2);
+            buttonLayout->setSpacing(5);
+
             QPushButton* editBtn = new QPushButton("Edytuj");
+            editBtn->setStyleSheet("QPushButton {\n"
+                                    "    background-color: rgb(142, 138, 255);\n"
+                                    "    color: rgb(6, 6, 6);\n"
+                                    "    font-family: 'e-Ukraine';\n"
+                                    "    padding: 5px 10px;\n"
+                                    "    border-radius: 5px;\n"
+                                    "    border: none;\n"
+                                    "}\n"
+                                    "QPushButton:hover {\n"
+                                    "    background-color: rgb(96, 93, 227);\n"
+                                    "}\n"
+                                    "QPushButton:pressed {\n"
+                                    "    background-color: rgb(64, 62, 162);\n"
+                                    "    color: rgb(255, 255, 255);\n"
+                                    "}");
+            editBtn->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::MailMessageNew));
             connect(editBtn, &QPushButton::clicked, [this, i](){
                 this->editContact(i);
             });
-            ui->wyswietlPers_tableWidget->setCellWidget(i, 3, editBtn);
-        }
+
+            // przycisk usuwania
+            QPushButton* usunBtn = new QPushButton("Usuń");
+            usunBtn->setStyleSheet("QPushButton {\n"
+                                    "    background-color: rgb(245, 123, 93);\n"
+                                    "    color: rgb(6, 6, 6);\n"
+                                    "    font-family: 'e-Ukraine';\n"
+                                    "    padding: 5px 10px;\n"
+                                    "    border-radius: 5px;\n"
+                                    "    border: none;\n"
+                                    "}\n"
+                                    "QPushButton:hover {\n"
+                                    "    background-color: rgb(254, 167, 145);\n"
+                                    "}\n"
+                                    "QPushButton:pressed {\n"
+                                    "    background-color: rgb(204, 95, 68);\n"
+                                    "    color: rgb(255, 255, 255);\n"
+                                    "}");
+            usunBtn->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::EditDelete));
+
+            connect(usunBtn, &QPushButton::clicked, [this, i](){
+                Database db;
+                db.load_from_file("contacts.txt");
+                db.removeContact(0, i);
+                db.save_to_file(); // Zapisz zmiany
+                // Odśwież widok tabeli
+                refreshCurrentView();
+            });
+
+            // Dodaj przyciski do layoutu
+            buttonLayout->addWidget(editBtn);
+            buttonLayout->addWidget(usunBtn);
+
+            // Ustaw widget w komórce tabeli
+            ui->wyswietlPers_tableWidget->setCellWidget(i, 3, buttonWidget);}
+
 
         // Dostosuj szerokość kolumn
         ui->wyswietlPers_tableWidget->resizeColumnsToContents();
@@ -319,6 +428,8 @@ void MainWindow::on_buttonimg_3_clicked()
     db.private_contacts[currentEditingContactIndex].setEmail(email.toStdString());
 
     db.save_to_file();
+    ui->stackedWidget->setCurrentIndex(2);
+    refreshCurrentView();
    // ui->stackedWidget->setCurrentIndex(2);
    // ui->lista_Widget->setCurrentIndex(1);
     //on_buisContatsWyswietl_Radio_released();
@@ -410,8 +521,3 @@ void MainWindow::on_powrotLista_B2N_2_clicked()
     on_persContatsWyswietl_Radio_released();
     on_buisContatsWyswietl_Radio_released();
 }
-
-
-
-
-
