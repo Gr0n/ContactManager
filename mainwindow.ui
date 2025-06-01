@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
+    <width>522</width>
     <height>1073</height>
    </rect>
   </property>
@@ -36,7 +36,7 @@
        </size>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="main_Screen">
        <widget class="QLabel" name="label">
@@ -721,6 +721,9 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
             <bold>true</bold>
            </font>
           </property>
+          <property name="layoutDirection">
+           <enum>Qt::LayoutDirection::LeftToRight</enum>
+          </property>
           <property name="styleSheet">
            <string notr="true">QPushButton{
 	background-color:rgb(85, 170, 127);
@@ -838,8 +841,8 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
        <widget class="QPushButton" name="powrotMain_B2N">
         <property name="geometry">
          <rect>
-          <x>30</x>
-          <y>20</y>
+          <x>60</x>
+          <y>10</y>
           <width>101</width>
           <height>41</height>
          </rect>
@@ -873,63 +876,6 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
          <bool>false</bool>
         </property>
        </widget>
-       <widget class="QPushButton" name="buttonimg">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="geometry">
-         <rect>
-          <x>10</x>
-          <y>600</y>
-          <width>61</width>
-          <height>31</height>
-         </rect>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>16777215</width>
-          <height>700</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <bold>false</bold>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	background-color:rgb(103, 98, 255);
-	                             margin: 2px; 
-								color:rgb(6, 6, 6);
-                               padding: 10px 15px; 
-                         border-radius: 5px; 
-;}
-                         QPushButton:hover{
- 	background-color:rgb(96, 93, 227);
-                         } 
-                         QLineEdit:pressed { 
-                         background-color: rgb(64, 62, 162); 
-						color:rgb(255, 255, 255);                         }</string>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
-        <property name="icon">
-         <iconset theme="mail-message-new"/>
-        </property>
-        <property name="iconSize">
-         <size>
-          <width>20</width>
-          <height>20</height>
-         </size>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="flat">
-         <bool>true</bool>
-        </property>
-       </widget>
        <widget class="QStackedWidget" name="lista_Widget">
         <property name="geometry">
          <rect>
@@ -946,9 +892,9 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
          <widget class="QTableWidget" name="wyswietlPers_tableWidget">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>421</width>
+            <x>40</x>
+            <y>20</y>
+            <width>361</width>
             <height>451</height>
            </rect>
           </property>
@@ -958,9 +904,9 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
          <widget class="QTableWidget" name="wyswietlBuiss_tableWidget">
           <property name="geometry">
            <rect>
-            <x>10</x>
-            <y>10</y>
-            <width>421</width>
+            <x>40</x>
+            <y>20</y>
+            <width>361</width>
             <height>451</height>
            </rect>
           </property>
@@ -970,9 +916,9 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
        <widget class="QWidget" name="layoutWidget">
         <property name="geometry">
          <rect>
-          <x>30</x>
+          <x>60</x>
           <y>80</y>
-          <width>421</width>
+          <width>361</width>
           <height>28</height>
          </rect>
         </property>
@@ -1026,43 +972,8 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
        <zorder>layoutWidget</zorder>
        <zorder>lista_Widget</zorder>
        <zorder>powrotMain_B2N</zorder>
-       <zorder>buttonimg</zorder>
       </widget>
       <widget class="QWidget" name="edytuj_Screen">
-       <widget class="QLabel" name="label_3">
-        <property name="geometry">
-         <rect>
-          <x>350</x>
-          <y>40</y>
-          <width>63</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>e-Ukraine</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	background-color:rgb(205, 208, 255);
-	                             margin: 2px; 
-								color:rgb(6, 6, 6);
-                               padding: 10px 15px; 
-                         border-radius: 5px; 
-;}
-                         QPushButton:hover{
- 	background-color:rgb(139, 139, 208);
-                         } 
-                         QLineEdit:pressed { 
-                         background-color: rgb(111, 111, 167); 
-						color:rgb(255, 255, 255);                         }</string>
-        </property>
-        <property name="text">
-         <string>Edytuj</string>
-        </property>
-       </widget>
        <widget class="QPushButton" name="powrotLista_B2N">
         <property name="geometry">
          <rect>
@@ -1320,24 +1231,37 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
        <widget class="QPushButton" name="buttonimg_2">
         <property name="geometry">
          <rect>
-          <x>370</x>
+          <x>280</x>
           <y>370</y>
-          <width>50</width>
-          <height>36</height>
+          <width>141</width>
+          <height>51</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>e-Ukraine</family>
+          <pointsize>11</pointsize>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-	background-color:rgb(218, 218, 218);
+	background-color:rgb(85, 170, 127);
 	                             margin: 2px; 
-								color:rgb(6, 6, 6);
+								color:rgb(255, 255, 255);
                                padding: 10px 15px; 
                          border-radius: 5px; 
 ;}
-                       </string>
+                         QPushButton:hover{
+ 	background-color:rgb(94, 189, 140);
+
+
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(113, 226, 167); 
+						color:rgb(61, 61, 61);                         }</string>
         </property>
         <property name="text">
-         <string/>
+         <string>Zapisz</string>
         </property>
         <property name="icon">
          <iconset theme="mail-message-new"/>
@@ -1354,24 +1278,37 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
        <widget class="QPushButton" name="buttonimg_3">
         <property name="geometry">
          <rect>
-          <x>380</x>
+          <x>289</x>
           <y>390</y>
-          <width>50</width>
-          <height>36</height>
+          <width>141</width>
+          <height>51</height>
          </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>e-Ukraine</family>
+          <pointsize>11</pointsize>
+         </font>
         </property>
         <property name="styleSheet">
          <string notr="true">QPushButton{
-	background-color:rgb(218, 218, 218);
+	background-color:rgb(85, 170, 127);
 	                             margin: 2px; 
-								color:rgb(6, 6, 6);
+								color:rgb(255, 255, 255);
                                padding: 10px 15px; 
                          border-radius: 5px; 
 ;}
-                       </string>
+                         QPushButton:hover{
+ 	background-color:rgb(94, 189, 140);
+
+
+                         } 
+                         QLineEdit:pressed { 
+                         background-color: rgb(113, 226, 167); 
+						color:rgb(61, 61, 61);                         }</string>
         </property>
         <property name="text">
-         <string/>
+         <string>Zapisz</string>
         </property>
         <property name="icon">
          <iconset theme="mail-message-new"/>
@@ -1604,40 +1541,6 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
          </item>
         </layout>
        </widget>
-       <widget class="QLabel" name="label_4">
-        <property name="geometry">
-         <rect>
-          <x>360</x>
-          <y>60</y>
-          <width>63</width>
-          <height>20</height>
-         </rect>
-        </property>
-        <property name="font">
-         <font>
-          <family>e-Ukraine</family>
-          <pointsize>11</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">QPushButton{
-	background-color:rgb(205, 208, 255);
-	                             margin: 2px; 
-								color:rgb(6, 6, 6);
-                               padding: 10px 15px; 
-                         border-radius: 5px; 
-;}
-                         QPushButton:hover{
- 	background-color:rgb(139, 139, 208);
-                         } 
-                         QLineEdit:pressed { 
-                         background-color: rgb(111, 111, 167); 
-						color:rgb(255, 255, 255);                         }</string>
-        </property>
-        <property name="text">
-         <string>Edytuj</string>
-        </property>
-       </widget>
       </widget>
      </widget>
     </item>
@@ -1648,7 +1551,7 @@ font-size: 28px; font-weight: bold; margin: 40px; color: #333; font-family: e-Uk
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>522</width>
      <height>26</height>
     </rect>
    </property>
