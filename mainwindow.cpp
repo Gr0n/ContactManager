@@ -1,29 +1,20 @@
 #include "mainwindow.h"
 #include "./ui_mainwindow.h"
-<<<<<<< Updated upstream
-
-=======
 #include "DatabaseSolution/DatabaseClass.h"
 #include <QMessageBox>
->>>>>>> Stashed changes
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-<<<<<<< Updated upstream
-=======
     ui->stackedWidget->setCurrentIndex(0);
     ui->starterWidget->setCurrentIndex(1);
->>>>>>> Stashed changes
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
-<<<<<<< Updated upstream
-=======
 
 
 
@@ -316,4 +307,3 @@ void MainWindow::editContact(int index)
                              QString("Edytowanie kontaktu o indeksie: %1").arg(index));
     // Implementuj logikę edycji
 }
->>>>>>> Stashed changes

@@ -17,8 +17,6 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-<<<<<<< Updated upstream
-=======
 private slots:
     void on_buttonimg_clicked();
 
@@ -50,7 +48,6 @@ private slots:
 
     void editContact(int index);
 
->>>>>>> Stashed changes
 private:
     Ui::MainWindow *ui;
 };
