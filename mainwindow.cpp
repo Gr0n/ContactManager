@@ -74,9 +74,9 @@ void MainWindow::on_utworzPers_B2n_clicked()
     QString uroziny=ui->urodzinyInput->text();
 
     PersonalContact contact(first_name.toStdString(), last_name.toStdString(), nrTel.toStdString(), email.toStdString(), uroziny.toStdString(), nickname.toStdString());
-    PersonalContact perskont("James", "bond", "99999", "mail@bond", "03/03/03", "bodzio");
+
     db.addContact(contact);
-    db.addContact(perskont);
+
 
     db.save_to_file();
 
